@@ -5,6 +5,6 @@ node{
     mvnHome = tool 'M3'
   }
   stage('Create Package'){
-    sh "${mvnHome}/bin/mvn -DskipTests package"
+    sh "${mvnHome}/bin/mvn -DskipTests - f pom.file package"
   }
 }
