@@ -5,6 +5,6 @@ node{
     def mvnHome = tools M3
   }
   stage('Create Package'){
-    sh "${mvnHome}/bin mvn -DskipTests package"
+    sh "${mvnHome}/bin/mvn -DskipTests package"
   }
 }
