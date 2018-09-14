@@ -1,4 +1,4 @@
-node('docker-localhost'){
+node('docker-host'){
   def mvnHome
   def customImage
   def dockerHome
@@ -6,6 +6,7 @@ node('docker-localhost'){
   stage('Preparation'){
     echo "Preparation"
     mvnHome = tool 'M3'
+    dockerHome = tool 'docker-host'
   }
   stage('Create Package'){
     sh "${mvnHome}/bin/mvn -DskipTests package"
