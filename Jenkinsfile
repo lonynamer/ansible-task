@@ -10,7 +10,7 @@ node('docker-host'){
   stage('Create Package'){
     sh "${mvnHome}/bin/mvn -DskipTests package"
   }
-//  stage('Build Docker Image'){
-//  customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
-//  }
+  stage('Build Docker Image'){
+  customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
+  }
 }
