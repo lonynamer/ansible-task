@@ -1,0 +1,70 @@
+---
+- hosts: localhost
+  become: true
+  
+  tasks:
+    - name: ping-pong server
+      ping:
+
+    - name: install python pip
+      apt: name=python-pip state=present update_cache=yes
+
+    - name: install docker.py module
+      pip: name={{item}} state=present
+      with_items:
+        - docker
+
+    - name: remove existing docker
+      apt: name={{item}} state=absent update_cache=yes
+      with_items:
+        - docker
+        - docker-engine
+        - docker.io
+
+    - name: install offial GPG key apt_key
+      apt_key: 
+        url: https://download.docker.com/linux/ubuntu/gpg 
+        state: present
+
+    - name: install apt_repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu {{ansible_distribution_release}} stable 
+        state: present
+
+    - name: install docker
+      apt: name=docker-ce state=present update_cache=yes
+
+    - name: add ubuntu user to docker group
+      user: 
+        name: ubuntu
+        groups: docker
+        append: yes
+      notify: restart docker
+
+    - name: create jenkins home persistent directory
+      file: name=/var/jenkins_home state=directory owner=1000 group=1000 mode=0775
+
+    - name: create nexus-data persistent directory
+      file: name=/var/nexus-data state=directory mode=0777
+
+    - name: install dockerized jenkins
+      docker_container: 
+        name: jenkins
+        image: "jenkinsci/jenkins:lts"
+        ports: "8080:8080,50000:50000"
+        recreate: no
+        state: started
+        volumes: /var/jenkins_home:/var/jenkins_home
+
+    - name: install dockerized nexus3
+      docker_container:
+        name: nexus
+        image: "sonatype/nexus3"
+        ports: "8081:8081"
+        recreate: no
+        state: started
+        volumes: /var/nexus-data:/var/nexus-data
+
+  handlers:
+  - name: restart docker
+    service: name=docker state=restarted
