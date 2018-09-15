@@ -5,8 +5,8 @@ node('docker-host'){
   checkout scm
   stage('Preparation'){
     echo "Preparation"
-    mvnHome = tool 'M3'
-    dockerHome = tool 'docker-tools'
+    def mvnHome = tool 'M3'
+    def dockerHome = tool 'docker-tools'
   }
   stage('Create Package'){
     sh "${mvnHome}/bin/mvn -DskipTests package"
