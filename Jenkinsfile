@@ -12,7 +12,7 @@ node('docker-host'){
     sh "${mvnHome}/bin/mvn -DskipTests package"
   }
   stage('Build Docker Image'){
-  echo sh (returnStdout: true, script: "${dockerHome}/bin/docker build -t lonynamer/time-tracker:${BUILD_ID} .")
+  sh "${dockerHome}/bin/docker build -t lonynamer/time-tracker:${BUILD_ID} ."
   //customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
   }
 }
