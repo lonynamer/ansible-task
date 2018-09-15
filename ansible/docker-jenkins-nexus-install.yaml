@@ -40,6 +40,13 @@
         groups: docker
         append: yes
       notify: restart docker
+      
+    - name: enable docker.sock and tcp://172.17.0.1:2376 for jenkins
+      lineinfile:
+        path: /lib/systemd/system/docker.service
+        regexp: '^ExecStart='
+        line: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://172.17.0.1:2376 -H unix:///var/run/docker.sock'
+      notify: restart docker
 
     - name: create jenkins home persistent directory
       file: name=/var/jenkins_home state=directory owner=1000 group=1000 mode=0775
