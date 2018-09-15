@@ -52,6 +52,7 @@
         name: jenkins
         image: "jenkinsci/jenkins:lts"
         ports: "8080:8080,50000:50000"
+        restart_policy: always
         recreate: no
         state: started
         volumes: /var/jenkins_home:/var/jenkins_home
@@ -61,6 +62,7 @@
         name: nexus
         image: "sonatype/nexus3"
         ports: "8081:8081"
+        restart_policy: always
         recreate: no
         state: started
         volumes: /var/nexus-data:/var/nexus-data
