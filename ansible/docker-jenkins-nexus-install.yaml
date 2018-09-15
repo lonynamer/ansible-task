@@ -34,18 +34,23 @@
     - name: install docker
       apt: name=docker-ce state=present update_cache=yes
 
+    - name: enable start docker service
+      systemd: name=docker state=started enabled=yes
+
+    - name: enable docker.sock and tcp://0.0.0.0:2376
+      lineinfile:
+        path: /lib/systemd/system/docker.service
+        regexp: '^ExecStart='
+        line: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock'
+      notify:
+        - daemon reload
+        - restart docker
+
     - name: add ubuntu user to docker group
       user: 
         name: ubuntu
         groups: docker
         append: yes
-      notify: restart docker
-      
-    - name: enable docker.sock and tcp://172.17.0.1:2376 for jenkins
-      lineinfile:
-        path: /lib/systemd/system/docker.service
-        regexp: '^ExecStart='
-        line: 'ExecStart=/usr/bin/dockerd -H fd:// -H tcp://172.17.0.1:2376 -H unix:///var/run/docker.sock'
       notify: restart docker
 
     - name: create jenkins home persistent directory
@@ -60,6 +65,7 @@
         image: "jenkinsci/jenkins:lts"
         ports: "8080:8080,50000:50000"
         restart_policy: always
+        memory: 512m
         recreate: no
         state: started
         volumes: /var/jenkins_home:/var/jenkins_home
@@ -70,10 +76,15 @@
         image: "sonatype/nexus3"
         ports: "8081:8081"
         restart_policy: always
+        memory: 800m
         recreate: no
         state: started
         volumes: /var/nexus-data:/var/nexus-data
 
   handlers:
+  - name: daemon reload
+    systemd:
+      daemon_reload: yes
+
   - name: restart docker
     service: name=docker state=restarted
