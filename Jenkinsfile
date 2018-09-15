@@ -4,6 +4,8 @@ node('docker-host'){
   def dockerHome
   checkout scm
   stage('Preparation'){
+    sh "id"
+    sh "whoami"
     echo "Preparation"
     mvnHome = tool 'M3'
     dockerHome = tool 'docker-tools'
