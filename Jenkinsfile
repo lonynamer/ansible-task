@@ -6,7 +6,7 @@ node('docker-host'){
   stage('Preparation'){
     echo "Preparation"
     mvnHome = tool 'M3'
-    dockerHome = tool 'docker-install'
+    dockerHome = tool 'docker-tools'
   }
   stage('Create Package'){
     sh "${mvnHome}/bin/mvn -DskipTests package"
