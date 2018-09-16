@@ -9,12 +9,13 @@ node('docker-host'){
     echo "Preparation"
     mvnHome = tool 'M3'
     dockerHome = tool 'docker-tools'
+    PATH=${mvnHome}:${dockerHome}:${PATH}
   }
   stage('Create Package'){
-    sh "${mvnHome}/bin/mvn -DskipTests package"
+    sh "mvn -DskipTests package"
   }
   stage('Build Docker Image'){
-  sh "${dockerHome}/bin/docker build -t lonynamer/time-tracker:${BUILD_ID} ."
+  sh "docker build -t lonynamer/time-tracker:${BUILD_ID} ."
   //customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
   }
   stage('Check Ansible'){
