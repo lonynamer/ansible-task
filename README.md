@@ -27,7 +27,7 @@ When you launch an AWS instance with the following user-data script;
 ---
 - There is a preconfigured task with scripted build pipeline from git, if you run to build it.
 - Pipeline: 
-
+          ---
           - All the pipeline runs on docker jnlp slave and they are deleted in the end.  
           - Jenkins itself do not run anything on itself, only launches the pipeline.
           - Jenkins launches docker slave, on slave does scm checkout which is git.
