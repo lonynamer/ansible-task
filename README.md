@@ -11,9 +11,9 @@ When you launch an AWS instance with the following user-data script;
 - Fetches ansible-playbook configuration descriptions from github. (Git)
 - Ansible-playbook configures, installs docker, pre-configured dockerized jenkins and sonatype nexus repository like this. (Ansible)
 
-`Credentials:`
-- http://<aws-instance-ip>:8080  (jenkins)
-- http://<aws-instance-ip>:8081  (nexus)
+`First Time Credentials:`
+- http://`aws-instance-ip`:8080  (jenkins)
+- http://`aws-instance-ip`:8081  (nexus)
 - user: admin
 - pass: admin123  (for both)
 ---
