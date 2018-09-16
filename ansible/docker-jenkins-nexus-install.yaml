@@ -90,7 +90,7 @@ handlers:
         restart_policy: always
         recreate: no
         state: started
-        volumes: /var/nexus-data:/sonatype-work
+        volumes: /var/nexus-data:/opt/sonatype/sonatype-work
 
   handlers:
   - name: daemon reload
