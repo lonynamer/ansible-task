@@ -57,7 +57,7 @@
       file: name=/var/jenkins_home state=directory owner=1000 group=1000 mode=0775
 
     - name: create nexus-data persistent directory
-      file: name=/var/nexus-data state=directory mode=0777
+      file: name=/var/nexus-data state=directory owner=200 group=200 group=200 mode=0775
 
     - name: install dockerized jenkins
       docker_container: 
@@ -77,7 +77,7 @@
         restart_policy: always
         recreate: no
         state: started
-        volumes: /var/nexus-data:/var/nexus-data
+        volumes: /var/nexus-data:/sonatype-work
 
   handlers:
   - name: daemon reload
