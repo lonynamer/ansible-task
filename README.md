@@ -42,13 +42,18 @@ When you launch an AWS instance with the following user-data script;
 - https://github.com/lonynamer/ansible-task/blob/master/Dockerfile
 
 
-
 ### Try It:
 ####Step 1:
 ---
 - Launch AWS instance minimum t2.medium instance 2 core 2 GB memory. (0.04 $ / hour) Less will not work.
+- image: Ubuntu Server 16.04 LTS (HVM), SSD Volume Type - ami-027583e616ca104df amazon (works on this empty image)
 - During the instance launch copy and paste the script below to Advanced/user-data section.
-- AWS Security Group creation not included. Create one enable ports 22, 8080, 8081, 8082  
+- AWS Security Group creation not included. Create one enable ports 22, 8080, 8081, 8082 
+- Login to your new instance with `ubuntu` user and run.
+- Even instance is launched, it will take time to build `build automation` environment in the background.
+- Run a few times;
+$ sudo cat /root/ansible-task/user-data.log
+- Ensure that you see in the end `TASK_COMPLETED_OK` message. Wait till you see and environment is ready.
 ---
 
 `user-data script`
@@ -85,6 +90,8 @@ done &> ~/ansible-task/user-data.log
 - Browse to Jenkins http://`aws-instance-ip`:8080  (jenkins)
 - Run the build `ansible-task`
 - In the end of successful pipeline run, production site will be ready, our application.
+- Test if application working.
+- http://``:8082/time-tracker-web-0.3.1
+- connect as ubuntu user, ensure that `time-tracker` container is running
+$ docker ps
 ---
-
-
