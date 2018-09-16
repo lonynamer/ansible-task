@@ -95,7 +95,7 @@ Step 2:
 - Run the build `ansible-task`
 - In the end of successful pipeline run, production site will be ready, our application.
 - Test if application working.
-- http://``:8082/time-tracker-web-0.3.1
+- http://`aws-instance-ip`:8082/time-tracker-web-0.3.1
 - connect as ubuntu user, ensure that `time-tracker` container is running
 - If docker command donot work reconnect again as ubuntu user to ssh.
 $ docker ps
