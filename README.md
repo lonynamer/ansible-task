@@ -17,12 +17,12 @@ When you launch an AWS instance with the following user-data script;
 - user: admin
 - pass: admin123  (for both)
 ---
+
 `Files:`
----
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/docker-jenkins-nexus-install.yaml
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/ansible.cfg
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/hosts
----
+
 #### Step 2 (Pipeline)
 ---
 - There is a preconfigured task with scripted build pipeline from git, if you run to build it.
@@ -43,10 +43,13 @@ When you launch an AWS instance with the following user-data script;
 
 
 
-
-
-
-
+### Try It:
+####Step 1:
+---
+- Launch AWS instance minimum t2.medium instance 2 core 2 GB memory. (0.04 $ / hour) Less will not work.
+- During the instance launch copy and paste the script below to Advanced/user-data section.
+- AWS Security Group creation not included. Create one enable ports 22, 8080, 8081, 8082  
+---
 
 `user-data script`
 ```
@@ -76,3 +79,9 @@ for log in "user-data"; do
 
 done &> ~/ansible-task/user-data.log
 ```
+
+####Step 2:
+---
+- Browse to Jenkins http://`aws-instance-ip`:8080  (jenkins)
+- Run the build `ansible-task`
+---
