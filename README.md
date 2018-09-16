@@ -1,12 +1,12 @@
-# AWS, Docker, Jenkins, Ansible, Nexus combined Devops example task.
+## AWS, Docker, Jenkins, Ansible, Nexus combined Devops example task.
 
-## Purpose
+### Purpose
 - The purpose of this project is studying and demonstration of abilities.
 - It should not be used in production;
   - As security is not configured.
   - Everything is run on one server and not best practicate.
 
-## What is does ?
+### What is does ?
 
 ```
 #!/bin/bash
