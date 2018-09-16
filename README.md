@@ -15,16 +15,35 @@ http://<aws-instance-ip>:8081 - nexus
 user: admin
 pass: admin123  (for both)
 
-#### Step 2
-- There is a preconfigured scripted build pipeline, if you run to build it.
+`Files:`
+- https://github.com/lonynamer/ansible-task/blob/master/ansible/docker-jenkins-nexus-install.yaml
+- https://github.com/lonynamer/ansible-task/blob/master/ansible/ansible.cfg
+- https://github.com/lonynamer/ansible-task/blob/master/ansible/hosts
+
+#### Step 2 (Pipeline)
+- There is a preconfigured task with scripted build pipeline from git, if you run to build it.
+- Pipeline: 
+          - All the pipeline runs on docker jnlp slave and they are deleted in the end.  
+          - Jenkins itself do not run anything on itself, only launches the pipeline.
+          - Jenkins launches docker slave, on slave does scm checkout which is git.
+          - mvn and docker tools installed on docker jnlp slave (launch docker jnlp-slave)
+          - mvn builds the sample java application (mvn build)
+          - docker builds a tomcat image with our builded application injected. (docker build)
+          - deletes the old container in the production. (de-publish)
+          - runs the newly builded container with our code. (publish)
+
+`Files:`
+- https://github.com/lonynamer/ansible-task/blob/master/Jenkinsfile
+- https://github.com/lonynamer/ansible-task/blob/master/Dockerfile
 
 
 
 
 
-#### Step 2
 
 
+
+`user-data script`
 ```
 #!/bin/bash
 # create dockerized build automation environment
