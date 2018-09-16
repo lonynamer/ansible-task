@@ -84,4 +84,7 @@ done &> ~/ansible-task/user-data.log
 ---
 - Browse to Jenkins http://`aws-instance-ip`:8080  (jenkins)
 - Run the build `ansible-task`
+- In the end of successful pipeline run, production site will be ready, our application.
 ---
+
+
