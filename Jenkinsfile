@@ -15,10 +15,10 @@ node('docker-host'){
     sh "${mvnHome}/mvn -DskipTests package"
   }
   stage('Build Docker Image'){
-    sh "${dockerHome}/docker build -t lonynamer/time-tracker:${BUILD_ID} ."
+    sh "${dockerHome}/docker build -t lonynamer/time-tracker ."
   //customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
   }
-  stage('Check Ansible'){
+  stage('Publish'){
   sh "ansible --version"
   }
 }
