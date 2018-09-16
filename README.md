@@ -5,6 +5,7 @@
 
 ### What it does ?
 #### Step 1
+---
 When you launch an AWS instance with the following user-data script;
 - Installs git and ansible on the instance. (Bash
 - Fetches ansible-playbook configuration descriptions from github. (Git)
@@ -14,13 +15,14 @@ http://<aws-instance-ip>:8080 - jenkins
 http://<aws-instance-ip>:8081 - nexus
 user: admin
 pass: admin123  (for both)
-
+---
 `Files:`
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/docker-jenkins-nexus-install.yaml
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/ansible.cfg
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/hosts
 
 #### Step 2 (Pipeline)
+---
 - There is a preconfigured task with scripted build pipeline from git, if you run to build it.
 - Pipeline: 
           - All the pipeline runs on docker jnlp slave and they are deleted in the end.  
@@ -31,6 +33,7 @@ pass: admin123  (for both)
           - docker builds a tomcat image with our builded application injected. (docker build)
           - deletes the old container in the production. (de-publish)
           - runs the newly builded container with our code. (publish)
+---
 
 `Files:`
 - https://github.com/lonynamer/ansible-task/blob/master/Jenkinsfile
