@@ -12,7 +12,7 @@ node('docker-host'){
     //PATH="${mvnHome}:${dockerHome}:${PATH}"
   }
   stage('Create Package'){
-    sh "${mvnHome}mvn -DskipTests package"
+    sh "${mvnHome}/mvn -DskipTests package"
   }
   stage('Build Docker Image'){
     sh "${dockerHome}/docker build -t lonynamer/time-tracker:${BUILD_ID} ."
