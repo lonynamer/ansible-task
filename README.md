@@ -17,10 +17,11 @@ user: admin
 pass: admin123  (for both)
 ---
 `Files:`
+---
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/docker-jenkins-nexus-install.yaml
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/ansible.cfg
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/hosts
-
+---
 #### Step 2 (Pipeline)
 ---
 - There is a preconfigured task with scripted build pipeline from git, if you run to build it.
