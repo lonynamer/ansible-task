@@ -6,9 +6,9 @@
 ### What it does ?
 #### Step 1
 When you launch an AWS instance with the following user-data script;
-- Installs git and ansible on the instance.
-- Fetches ansible-playbook configuration desctiptions from github.
-- Ansible-playbook configures, installs docker, pre-configured dockerized jenkins and sonatype nexus repository like this.
+- Installs git and ansible on the instance. (Bash
+- Fetches ansible-playbook configuration descriptions from github. (Git)
+- Ansible-playbook configures, installs docker, pre-configured dockerized jenkins and sonatype nexus repository like this. (Ansible)
 
 http://<aws-instance-ip>:8080 - jenkins
 http://<aws-instance-ip>:8081 - nexus
@@ -17,6 +17,7 @@ pass: admin123  (for both)
 
 #### Step 2
 - There is a preconfigured scripted build pipeline, if you run to build it.
+
 
 
 
