@@ -22,6 +22,6 @@ node('docker-host'){
   sh "if ${dockerHome}/bin/docker ps | grep 'time-tracker'; then ${dockerHome}/bin/docker rm -f time-tracker; else true; fi"
   }
   stage('Publish'){
-  sh "${dockerHome}/bin/docker run --rm -d --name time-tracker -p 8082:8080 lonynamer/time-tracker"
+  sh "${dockerHome}/bin/docker run --rm -d --name time-tracker --restart always -p 8082:8080 lonynamer/time-tracker"
   }
 }
