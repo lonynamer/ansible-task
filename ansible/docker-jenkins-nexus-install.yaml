@@ -55,7 +55,20 @@
 
     - name: create jenkins home persistent directory
       file: name=/var/jenkins_home state=directory owner=1000 group=1000 mode=0775
+      
+     - name: get pre-configured jenkins home
+       get_url:
+         url: http://http://s3.eu-central-1.amazonaws.com/jenkishome/jenkins_home.tar.gz
+         dest: /var/jenkins_home/
+       notify: 
+         - extract jenkinshome
 
+handlers:
+     - name: extract jenkinshome
+       extract:
+         src: /var/jenkins_home/jenkins_home.tar.gz
+         dest: /var/jenkins_home/
+         
     - name: create nexus-data persistent directory
       file: name=/var/nexus-data state=directory owner=200 group=200 group=200 mode=0775
 
