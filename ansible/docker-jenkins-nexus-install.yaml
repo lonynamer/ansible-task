@@ -58,7 +58,7 @@
       
      - name: get pre-configured jenkins home
        get_url:
-         url: http://http://s3.eu-central-1.amazonaws.com/jenkishome/jenkins_home.tar.gz
+         url: http://s3.eu-central-1.amazonaws.com/jenkishome/jenkins_home.tar.gz
          dest: /var/jenkins_home/
        notify: 
          - extract jenkinshome
