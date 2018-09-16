@@ -19,7 +19,7 @@ node('docker-host'){
   //customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
   }
   stage('DePublish'){
-  sh "${dockerHome}/bin/docker ps | grep 'time-tracker' && ${dockerHome}/bin/docker rm time-tracker"
+  sh "${dockerHome}/bin/docker ps | grep 'time-tracker' && ${dockerHome}/bin/docker rm -f time-tracker"
   }
   stage('Publish'){
   sh "${dockerHome}/bin/docker run --rm -d --name time-tracker -p 8082:8080 lonynamer/time-tracker"
