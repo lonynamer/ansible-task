@@ -2,11 +2,27 @@
 
 ### Purpose
 - The purpose of this project is studying and demonstration of abilities.
-- It should not be used in production;
-  - As security is not configured.
-  - Everything is run on one server and not best practicate.
 
-### What is does ?
+### What it does ?
+#### Step 1
+When you launch an AWS instance with the following user-data script;
+- Installs git and ansible on the instance.
+- Fetches ansible-playbook configuration desctiptions from github.
+- Ansible-playbook configures, installs docker, pre-configured dockerized jenkins and sonatype nexus repository like this.
+
+http://<aws-instance-ip>:8080 - jenkins
+http://<aws-instance-ip>:8081 - nexus
+user: admin
+pass: admin123  (for both)
+
+#### Step 2
+- There is a preconfigured scripted build pipeline, if you run to build it.
+
+
+
+
+#### Step 2
+
 
 ```
 #!/bin/bash
