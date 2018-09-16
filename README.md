@@ -3,8 +3,8 @@
 ### Purpose
 - The purpose of this project is studying and demonstration of abilities.
 
-### What it does ?
-#### Step 1
+#### What it does ?
+Step 1
 ---
 When you launch an AWS instance with the following user-data script;
 - Installs git and ansible on the instance. (Bash
@@ -23,7 +23,7 @@ When you launch an AWS instance with the following user-data script;
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/ansible.cfg
 - https://github.com/lonynamer/ansible-task/blob/master/ansible/hosts
 
-#### Step 2 (Pipeline)
+Step 2 (Pipeline)
 ---
 - There is a preconfigured task with scripted build pipeline from git, if you run to build it.
 ---
@@ -44,8 +44,8 @@ When you launch an AWS instance with the following user-data script;
 - https://github.com/lonynamer/ansible-task/blob/master/Dockerfile
 
 
-### Try It:
-####Step 1:
+#### Try It:
+Step 1:
 ---
 - Launch AWS instance minimum t2.medium instance 2 core 2 GB memory. (0.04 $ / hour) Less will not work.
 - image: Ubuntu Server 16.04 LTS (HVM), SSD Volume Type - ami-027583e616ca104df amazon (works on this empty image)
@@ -87,7 +87,7 @@ for log in "user-data"; do
 done &> ~/ansible-task/user-data.log
 ```
 
-####Step 2:
+Step 2:
 ---
 - Browse to Jenkins http://`aws-instance-ip`:8080  (jenkins)
 - Run the build `ansible-task`
