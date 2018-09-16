@@ -2,7 +2,7 @@
 
 ### Purpose
 - The purpose of this project is studying and demonstration of abilities.
-- The same can be done on docker swarm or kubernetes cluster to create auto-scaling buld environment without attaching jenkins slaves. 
+- The same can be done on docker swarm or kubernetes cluster to create auto-scaling buld environment without attaching jenkins slaves, by dockerized jnlp slaves. 
 
 #### What it does ?
 Step 1
