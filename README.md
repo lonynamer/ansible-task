@@ -44,7 +44,9 @@ Step 2 (Pipeline)
 - https://github.com/lonynamer/ansible-task/blob/master/Dockerfile
 
 
-#### Try It:
+
+
+## Try It:
 Step 1:
 ---
 - Launch AWS instance minimum t2.medium instance 2 core 2 GB memory. (0.04 $ / hour) Less will not work.
