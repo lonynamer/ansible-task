@@ -19,6 +19,6 @@ node('docker-host'){
   //customImage = docker.build("lonyn/timetracker-image:${env.BUILD_ID}", ".")
   }
   stage('Publish'){
-  sh "ansible --version"
+  sh "${dockerHome}/bin/docker run --rm -d --name=time-tracker -p 8082:8082 lonynamer/time-tracker"
   }
 }
