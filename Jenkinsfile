@@ -9,7 +9,7 @@ node('docker-host'){
     echo "Preparation"
     mvnHome = tool 'M3'
     dockerHome = tool 'docker-tools'
-    PATH=${mvnHome}:${dockerHome}:${PATH}
+    PATH="${mvnHome}:${dockerHome}:${PATH}"
   }
   stage('Create Package'){
     sh "mvn -DskipTests package"
